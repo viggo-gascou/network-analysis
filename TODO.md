@@ -17,3 +17,6 @@
 [x] - Cleaned the data - Done
 
 [x] - Put degree on each node - Done
+
+HIV TODO
+[] find dataset 
