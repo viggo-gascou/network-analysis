@@ -5,6 +5,7 @@ from scipy.stats import linregress
 import numpy as np
 import powerlaw as pl
 from scipy.stats import powerlaw
+import networkx as nx
 #Here we make a data frame with a count of the degrees. "k" is the number of degrees, and 
 #"count" is how many nodes have that corresponding degree. We make this data frame to help us with the degree distribution
 
@@ -36,7 +37,7 @@ def plot_degree(df):
     plt.title("Plot of the Degree Distribution")
 
 
-G = nx.complete_graph(100)
+
 
 def check_power_law(G):
     # define ccdf like in the plot function.
@@ -78,4 +79,3 @@ def check_power_law(G):
     plt.savefig("ccdf_fit.png")
 
 
-check_power_law(G)

@@ -28,7 +28,8 @@ def load_original():
 class CommunityLayout:
     def __init__(self, G,
                  layout_algorithm = nx.spring_layout, layout_kwargs = {"k":75, "iterations":1000},
-                 community_compression = 0.15, community_algorithm = community.louvain_communities, community_kwargs = {"resolution":2}):
+                 community_compression = 0.15, community_algorithm = community.louvain_communities, community_kwargs = {"resolution":2},
+                 save=False):
         """
         Community layout class init.
         Takes user-specified layout and community detection algorithms and lays out a meta-graph and sub-graphs for each community.
@@ -47,6 +48,7 @@ class CommunityLayout:
         except:
             raise Exception("No graph passed to init")
 
+        self.save = save
         self.G.remove_edges_from(nx.selfloop_edges(self.G))
         self.layout_algorithm = layout_algorithm
         self.layout_kwargs = layout_kwargs
@@ -145,13 +147,10 @@ class CommunityLayout:
         # Draw nodes and edges using above and self.full_positions
         if ax is None:
             fig, ax = plt.subplots(dpi=500)
-            save = True
-        else:
-            save = False
         nx.draw_networkx_nodes(self.G, pos=self.full_positions, node_size=2, ax = ax, node_color=colors)
         nx.draw_networkx_edges(self.G, pos=self.full_positions, node_size=2, width=alphas, alpha=alphas, ax = ax)
 
-        if save:
+        if self.save:
             plt.savefig("figures/community_laid_out.png")
             plt.show()
         else:
