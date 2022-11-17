@@ -1,6 +1,6 @@
 # This is a basic workflow that is manually triggered and automatically triggered every 6 hours
 
-name: auto_execute_deepnote
+name: execute_deepnote
 
 on:
   schedule:
@@ -8,7 +8,7 @@ on:
     - cron: '0 */6 * * *'
   workflow_dispatch:
 jobs:
-  push_pull:
+  deepnote_execute:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
