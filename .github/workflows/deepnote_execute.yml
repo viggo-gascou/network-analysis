@@ -14,6 +14,7 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+    - run: date
     # Runs a single command using the runners shell
     - name: execute_deepnote
       run: curl -X POST ${{ secrets.DEEPNOTE_URL }} -H ${{ secrets.DEEPNOTE_API_KEY }}
