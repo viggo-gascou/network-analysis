@@ -27,7 +27,7 @@ def five_number_degree(degrees):
     return np.percentile(degrees, [0,25,50,75,100])
 
 def degree_variance(degrees):
-    return (np.sum([(degree - avg_degree(G))**2 for degree in degrees])) / len(degrees)
+    return (np.sum([(degree - np.mean(degrees))**2 for degree in degrees])) / len(degrees)
 
 def global_clustering_coef(G):
     return nx.transitivity(G)
