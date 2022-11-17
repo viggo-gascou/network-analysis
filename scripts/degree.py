@@ -36,6 +36,7 @@ def plot_degree(df):
     plt.title("Plot of the Degree Distribution")
 
 
+G = nx.complete_graph(100)
 
 def check_power_law(G):
     # define ccdf like in the plot function.
@@ -59,6 +60,7 @@ def check_power_law(G):
     slope, log10intercept, r_value, p_value, std_err = linregress(logcdf["k"], logcdf["ccdf"])
     print("CCDF Fit: %1.4f x ^ %1.4f (R2 = %1.4f, p = %1.4f)" % (10 ** log10intercept, slope, r_value ** 2, p_value))
     plt.plot(np.log10(ccdf['k']), np.log10(ccdf['ccdf']))
+    plt.show()
 
 
     results = pl.Fit(ccdf["ccdf"])
@@ -70,6 +72,10 @@ def check_power_law(G):
     # Let's plot the best fit.
     ccdf["fit"] = (10 ** results.power_law.Kappa) * (ccdf["k"] ** -results.power_law.alpha)
     ax = plt.gca()
+    ax.set_xlim(min(ccdf['k']), max(ccdf['k']))
     ccdf.plot(kind = "line", x = "k", y = "ccdf", color = "#e41a1c", loglog = True, ax = ax)
     ccdf.plot(kind = "line", x = "k", y = "fit", color = "#377eb8", loglog = True, ax = ax)
     plt.savefig("ccdf_fit.png")
+
+
+check_power_law(G)
