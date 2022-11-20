@@ -89,23 +89,27 @@ def final_return_statement(G, n):
     # frame the data as a link of links in order to print tabulate
     degrees = get_degrees(G)
     five = five_number_degree(degrees)
+
+    
     
     _global = [["Number of nodes: ", number_of_nodes(G)], ["Number of edges: ", number_of_edges(G)],["Diameter: ", diameter(G)], 
     ["Density of the graph: ", density(G)],["----------------","----------------"], ["Five number summary of the degrees: ", "----------------"], ["Minimum degree: ", five[0]],
     ["Lower Quantile: ", five[1]], ["Median Value: ", five[2]], ["Upper Quantile: ", five[3]], ["Maximum degree: ", five[4]],['Degree Variance:', degree_variance(degrees)],["----------------","----------------"],
      ["Global clustering coefficient: ", global_clustering_coef(G)], ["Average clustering coefficient: ", avg_clustering_coef(G)]
      , ["Average Shortest Path: ", avg_shortest_path(G)]]
-
-    local = [['Closeness Centrality',' ' , ' ']] + n_highest_degree_centrality(G, n) + [['Betweenness Centrality', ' ', ' ']] + n_highest_betweenness_centrality(G,n) + [['Degree Centrality', ' ', ' ']] + n_highest_degree_centrality(G, n)
     
-
     print("                   GLOBAL MEASURES                  ")
     print("----------------------------------------------------")
     print(tabulate(_global, headers=["Measure", "Value"]))
+
+    local = [['Closeness Centrality',' ' , ' ']] + n_highest_degree_centrality(G, n) + [['Betweenness Centrality', ' ', ' ']] + n_highest_betweenness_centrality(G,n) + [['Degree Centrality', ' ', ' ']] + n_highest_degree_centrality(G, n)
+
     print("                   LOCAL MEASURES                  ")
     print("----------------------------------------------------")
     print(tabulate(local, headers=["Measure", "n", "Node, Measure"]))
     maximal_cliques(G)
+
+
 
 
 
