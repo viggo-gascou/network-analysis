@@ -1,0 +1,6 @@
+# prop_name, value
+name,arxiv_authors (HepTh)
+description,"Scientific collaborations between authors of papers submitted to arxiv.org, under 5 categories: gr-qc, astro-ph, cond-mat, hep-ph, and hep-th categories, spanning January 1993 to April 2003. If an author i co-authored a paper with author j, the graph contains a undirected edge from i to j. If the paper is co-authored by k authors this generates a completely connected (sub)graph on k nodes."
+citation,"['Leskovec, J. Kleinberg and C. Faloutsos. \"Graph Evolution: Densification and Shrinking Diameters.\" ACM Transactions on Knowledge Discovery from Data 1(1), article 2 (2007)., http://www.cs.cmu.edu/~jure/pubs/powergrowth-tkdd.pdf']"
+url,http://snap.stanford.edu/data/ca-GrQc.html
+tags,"['Social', 'Collaboration', 'Unweighted', 'Projection']"
