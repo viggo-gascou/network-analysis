@@ -74,8 +74,8 @@ def check_power_law(G):
     ccdf["fit"] = (10 ** results.power_law.Kappa) * (ccdf["k"] ** -results.power_law.alpha)
     ax = plt.gca()
     ax.set_xlim(min(ccdf['k']), max(ccdf['k']))
-    ccdf.plot(kind = "line", x = "k", y = "ccdf", color = "#e41a1c", loglog = True, ax = ax)
-    ccdf.plot(kind = "line", x = "k", y = "fit", color = "#377eb8", loglog = True, ax = ax)
+    ccdf.plot(kind = "line", x = "k", y = "ccdf", color = "#e41a1c", ax = ax, loglog=True)
+    ccdf.plot(kind = "line", x = "k", y = "fit", color = "#377eb8", ax = ax, loglog=True)
     plt.savefig("ccdf_fit.png")
 
 
