@@ -9,6 +9,10 @@ import networkx as nx
 #Here we make a data frame with a count of the degrees. "k" is the number of degrees, and 
 #"count" is how many nodes have that corresponding degree. We make this data frame to help us with the degree distribution
 
+import warnings
+warnings.filterwarnings("ignore", category=RuntimeWarning) 
+
+
 def make_df(node_list_degrees):
     num_degrees = Counter(node_list_degrees["Degree"]) 
 
@@ -70,6 +74,7 @@ def check_power_law(G):
 
     print(powerlaw.fit(ccdf['ccdf']))
     print(results.power_law.alpha)
+    print(f"Compare: {results.distribution_compare('power_law', 'exponential')}")
     # Let's plot the best fit.
     ccdf["fit"] = (10 ** results.power_law.Kappa) * (ccdf["k"] ** -results.power_law.alpha)
     ax = plt.gca()
