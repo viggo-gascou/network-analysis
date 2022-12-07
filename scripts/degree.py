@@ -68,7 +68,7 @@ def check_power_law(G):
     plt.show()
 
 
-    results = pl.Fit(ccdf["ccdf"], discrete=True)
+    results = pl.Fit(ccdf["ccdf"])
     k_min = ccdf[ccdf["ccdf"] == results.power_law.xmin]["k"]
     print("Powerlaw CCDF Fit: %1.4f x ^ -%1.4f (k_min = %d)" % (10 ** results.power_law.Kappa, results.power_law.alpha, k_min))
 
