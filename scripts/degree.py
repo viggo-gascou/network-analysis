@@ -5,6 +5,7 @@ from scipy.stats import linregress
 import numpy as np
 import powerlaw as pl
 from scipy.stats import powerlaw
+from matplotlib.ticker import FormatStrFormatter
 import networkx as nx
 #Here we make a data frame with a count of the degrees. "k" is the number of degrees, and 
 #"count" is how many nodes have that corresponding degree. We make this data frame to help us with the degree distribution
@@ -64,9 +65,9 @@ def check_power_law(G):
     logcdf = np.log10(ccdf[["k", "ccdf"]])
     slope, log10intercept, r_value, p_value, std_err = linregress(logcdf["k"], logcdf["ccdf"])
     print("CCDF Fit: %1.4f x ^ %1.4f (R2 = %1.4f, p = %1.4f)" % (10 ** log10intercept, slope, r_value ** 2, p_value))
+    
     plt.plot(np.log10(ccdf['k']), np.log10(ccdf['ccdf']))
     plt.show()
-
 
     results = pl.Fit(ccdf["ccdf"])
     k_min = ccdf[ccdf["ccdf"] == results.power_law.xmin]["k"]
@@ -78,11 +79,15 @@ def check_power_law(G):
     # Let's plot the best fit.
     ccdf["fit"] = (10 ** results.power_law.Kappa) * (ccdf["k"] ** -results.power_law.alpha)
     ax = plt.gca()
-    ax.set_xlim(min(ccdf['k']), max(ccdf['k']))
-    ax.set_ylabel('p(k>=x)')
-    ax.set_xlabel('x')
+
     ccdf.plot(kind = "line", x = "k", y = "ccdf", color = "#e41a1c", ax = ax, loglog=True)
     ccdf.plot(kind = "line", x = "k", y = "fit", color = "#377eb8", ax = ax, loglog=True)
+    ax.set_xlabel('x')
+    ax.set_xlim(min(ccdf['k']), max(ccdf['k']))
+    ax.set_ylim(min(ccdf['ccdf']), max(ccdf['ccdf']))
+    ax.set_ylabel('p(k>=x)')
+    ax.yaxis.set_major_formatter(FormatStrFormatter('%.2f'))
+    ax.xaxis.set_major_formatter(FormatStrFormatter('%.0f'))
     plt.savefig("ccdf_fit.png")
 
 
